@@ -13,7 +13,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int RC_CONTACT = 111;
+    private static final int RC_CONTACT_LOG = 111;
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -39,9 +39,11 @@ public class MainActivity extends AppCompatActivity {
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
 
-    @AfterPermissionGranted(RC_CONTACT)
+    @AfterPermissionGranted(RC_CONTACT_LOG)
     private void loadActivity() {
-        if (EasyPermissions.hasPermissions(this, Manifest.permission.READ_CONTACTS)) {
+
+        String[] perms = new String[]{Manifest.permission.READ_CONTACTS,Manifest.permission.READ_CALL_LOG};
+        if (EasyPermissions.hasPermissions(this, perms)) {
             viewPager = findViewById(R.id.viewpager);
             tabLayout = findViewById(R.id.tabs);
             MainActivityPagerAdapter mainActivityPagerAdapter = new MainActivityPagerAdapter(getSupportFragmentManager());
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             setupTabIcons();
         } else {
             EasyPermissions.requestPermissions(this, getString(R.string.contact_rationale),
-                    RC_CONTACT, Manifest.permission.READ_CONTACTS);
+                    RC_CONTACT_LOG, perms);
         }
     }
 }

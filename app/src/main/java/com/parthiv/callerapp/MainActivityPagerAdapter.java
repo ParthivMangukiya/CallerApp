@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.parthiv.callerapp.contact.ContactsFragment;
+import com.parthiv.callerapp.log.LogsFragment;
 
 public class MainActivityPagerAdapter extends FragmentPagerAdapter {
 
@@ -16,7 +17,7 @@ public class MainActivityPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return ContactsFragment.newInstance();
+                return LogsFragment.newInstance();
             case 1:
                 return ContactsFragment.newInstance();
             default:
